@@ -11,6 +11,9 @@ export function app(): express.Express {
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
+  const MockBrowser = require('mock-browser').mocks.MockBrowser;
+  const mock = new MockBrowser();
+  global['window'] = mock.getWindow();
 
   const commonEngine = new CommonEngine();
 
